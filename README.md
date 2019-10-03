@@ -2,7 +2,7 @@
 
 Context search the Athabasca University Library catalog, or Google Scholar while displaying resources freely available through the AU Library with a login.
 
-![Screenshot](img/screenshot.png)
+![Screenshot](img/screenshot.jpg)
 
 ## [Install it from the Chrome Web Store](https://chrome.google.com/webstore/detail/au-library-search-+/kfhekglkdjhlakgmpdbdhdeafoafoimf)
 
