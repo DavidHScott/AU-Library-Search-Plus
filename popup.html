@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>AU Library Search</title>
+    <link href="css/style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+    <header><span class="logo"><img src="img/logo-48.png"></span><span class="htitle">AU Library Search +</span><br />
+        <span class="descr">Choose which sites to search. Each will open in a new tab</span></header>
+    <br />
+    <main>
+        <form action="#" id="searchform">
+            <div class="searcharea">
+
+                <input type="text" id="search" class="searchbox" placeholder=" Enter Search Term" required>
+            </div>
+            <br />
+
+            <div class="database-select">
+                <label class="search-check">AU Library
+                    <input type="checkbox" value="aulib" id="aulib" checked="checked">
+                    <span class="checkmark"></span>
+                </label>
+
+                <label class="search-check">Google Scholar
+                    <input type="checkbox" value="scholar" id="scholar">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="search-check">Microsoft Academic
+                    <input type="checkbox" value="microsoft" id="microsoft">
+                    <span class="checkmark"></span>
+                </label>
+              
+                <label class="search-check">Semantic Scholar
+                    <input type="checkbox" value="semantic" id="semantic">
+                    <span class="checkmark"></span>
+                </label>
+                  <label class="search-check">Archive.org Text
+                    <input type="checkbox" value="archive" id="archive">
+                    <span class="checkmark"></span>
+                </label>
+           
+                <br />
+                <button type="submit" id="searchtime">Search Selected Databases</button>
+            </div>
+        </form>
+    </main>
+
+
+<script src="js/popup.js"></script>
+</body>
+
+</html>
