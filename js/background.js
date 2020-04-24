@@ -1,8 +1,37 @@
-/* parent and children - sample code from https://developer.chrome.com/extensions/examples/api/contextMenus/basic/sample.js
- * var parent = chrome.contextMenus.create({"title": "Test parent item"});
- * var child1 = chrome.contextMenus.create({"title": "Child 1", "parentId": parent, "onclick": genericOnClick});
- */
+/****************************************************/
+// Filename: background.js
+// Author: David Scott
+// Version: 0.4
+// Extension: AU Library Search Plus 
+// Date: 2020-04-22
+/****************************************************/
 
+
+
+
+document.body.onload = function () {
+    chrome.storage.sync.get("engines", function (result) {
+        if(result.engines < 0) {
+             eng1 = result.engines;
+            
+        } else {
+       eng1 = ["aulib","scholar","microsoft","semantic"];
+            }
+    });
+       
+};
+
+
+
+chrome.runtime.onInstalled.addListener(function(details){
+    if(details.reason == "install"){
+ chrome.runtime.openOptionsPage()
+ }
+ }); 
+                                       
+ /* parent and children 
+// https://developer.chrome.com/extensions/examples/api/contextMenus/basic/sample.js
+*/                                      
 var parent = chrome.contextMenus.create({
     "title": "AU Library Search+",
     "id": "0",
@@ -27,8 +56,8 @@ var searches = [{
         url: "https://www.semanticscholar.org/search?q=%s"
     },
     {
-        title: 'Search Archive.org for "%s"',
-        url: "https://archive.org/details/texts?and%5B%5D=%s"
+        title: 'Search Scinapse for "%s"',
+        url: "https://scinapse.io/search?page=1&sort=RELEVANCE&query=%s"
     }
   ];
 
@@ -41,15 +70,12 @@ searches.forEach(function (obj) {
     });
 });
 
-/* Populate instances of %s with whatever is highlighted in the current tab */
+/* Populate %s with whatever is highlighted in the current tab */
 
 chrome.contextMenus.onClicked.addListener(function (info, tab) {
-
     var searchObj = searches[info.menuItemId - 1];
     if (typeof searchObj === "undefined")
         return;
-
-    //open new tab with search results
     chrome.tabs.create({
         "url": searchObj.url.replace("%s", encodeURIComponent(info.selectionText))
     });

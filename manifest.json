@@ -1,6 +1,6 @@
 {
     "name": "AU Library Search +",
-    "version": "0.03",
+    "version": "0.04",
     "manifest_version": 2,
     "short_name": "AU Library Search +",
     "description": "Context search the Athabasca University Library catalog, Google Scholar, and other academic search engines.",
@@ -8,11 +8,13 @@
     "permissions": [
         "contextMenus",
         "activeTab",
-        "tabs"
+        "tabs",
+        "storage"
   ],
 
     
     "homepage_url": "http://student.athabascau.ca/~davidsc61/",
+    "options_page": "options.html",
 
     "background": {
         "scripts": ["js/background.js"],

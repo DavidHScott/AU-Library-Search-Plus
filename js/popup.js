@@ -1,18 +1,40 @@
-/*
-AU Library Discover: http://0-search.ebscohost.com.aupac.lib.athabascau.ca/login.aspx?direct=true&searchMode=And&site=eds-live&bquery=(search+term)
-Microsoft Academic : https://academic.microsoft.com/search?q=(search+term)
-Google Scholar: https://scholar.google.com/scholar?q=(search+term)
-https://0-scholar-google-ca.aupac.lib.athabascau.ca/scholar?q=(search+term)
-Semantic Scholar: https://www.semanticscholar.org/search?q=(search%20term)
-Archive.org https://archive.org/details/texts?and%5B%5D=(search+term)
+/****************************************************/
+// Filename: popup.js
+// Author: David Scott
+// Version: 0.4
+// Extension: AU Library Search Plus 
+// Date: 2020-04-23
+/****************************************************/
+document.body.onload = function () {
+    chrome.storage.sync.get("engines", function (result) {
+        eng1 = result.engines;
+        //console.log(eng1);
+            eng1.forEach(function (cls, index) {
+                var clss = "."+cls;
+                console.log(clss);
+                document.querySelector(clss).style.display='block';
+            });
+    });
+};
 
 
-*/
+
+const aulib = document.querySelector("#aulib");
+const arxiv = document.querySelector("#arxiv");
+const base = document.querySelector("#base");
+const citeseer = document.querySelector("#citeseer");
+const core = document.querySelector("#core");
+const bioone = document.querySelector("#bioone");
+const eric = document.querySelector("#eric");
+const scholarx = document.querySelector("#scholarx");
+const pubmed = document.querySelector("#pubmed");
+const researchgate = document.querySelector("#researchgate");
+const scinapse = document.querySelector("#scinapse");
 const au = document.querySelector("#aulib");
 const scholar = document.querySelector("#scholar");
 const microsoft = document.querySelector("#microsoft");
 const semantic = document.querySelector("#semantic");
-const archiveorg = document.querySelector("#archive");
+const archiveorg = document.querySelector("#archiveorg");
 
 const searchbtn = document.querySelector("#searchtime");
 
@@ -24,36 +46,102 @@ function performSearch(e) {
     const searchstringplus = searchstring.replace(/ /g, "+");
     const searchstringspace = searchstring.replace(/ /g, "%20");
 
-    if (au.checked) {
+    if ((aulib)&&(aulib.checked)) {
         var newAuURL = 'http://0-search.ebscohost.com.aupac.lib.athabascau.ca/login.aspx?direct=true&searchMode=And&site=eds-live&bquery=' + searchstringplus;
         chrome.tabs.create({
             url: newAuURL
         });
 
     };
-    if (scholar.checked) {
+    if ((arxiv!=null) && (arxiv.checked)) {
+        var newArxivURL = 'https://arxiv.org/search/?searchtype=all&query=' + searchstringplus;
+        chrome.tabs.create ({
+            url:newArxivURL
+        });
+    };
+    
+    if ((base)&&(base.checked)) {
+        var newBaseURL = 'https://www.base-search.net/Search/Results?type=all&lookfor=' + searchstringplus;
+        chrome.tabs.create({
+            url: newBaseURL
+        });
+    };
+        if ((bioone)&&(bioone.checked)) {
+        var newBiooneURL = 'https://bioone.org/search?term=' + searchstringplus;
+        chrome.tabs.create({
+            url: newBiooneURL
+        });
+    };
+       
+        if ((citeseer)&&(citeseer.checked)) {
+        var newCiteseerURL = 'http://citeseerx.ist.psu.edu/search?q=' + searchstringplus;
+        chrome.tabs.create({
+            url: newCiteseerURL
+        });
+    };
+        if ((core)&&(core.checked)) {
+        var newCoreURL = 'https://core.ac.uk/search?q=' + searchstringplus;
+        chrome.tabs.create({
+            url: newCoreURL
+        });
+    };
+    if ((eric)&&(eric.checked)) {
+        var newEricURL = 'https://eric.ed.gov/?q=' + searchstringplus;
+        chrome.tabs.create({
+            url: newEricURL
+        });
+    };
+
+          if ((scholar)&&(scholar.checked)) {
         var newScholarURL = 'https://0-scholar-google-com.aupac.lib.athabascau.ca/scholar?hl=en&as_sdt=0,5&q=' + searchstringspace;
-        //console.log(newScholarURL);
         chrome.tabs.create({
             url: newScholarURL
         });
     };
-    if (microsoft.checked) {
+            if ((scholarx)&&(scholarx.checked)) {
+        var newScholarxURL = 'https://scholar.google.com/scholar?hl=en&q=' + searchstringplus;
+        chrome.tabs.create({
+            url: newScholarxURL
+        });
+    };
+    
+        if ((archiveorg)&&(archiveorg.checked)) {
+        var newArchiveURL = 'https://archive.org/details/texts?and%5B%5D=' + searchstringplus;
+        chrome.tabs.create({
+            url: newArchiveURL
+        });
+    };
+    
+    if ((microsoft)&&(microsoft.checked)) {
         var newMicrosoftURL = 'https://academic.microsoft.com/search?q=' + searchstringplus;
         chrome.tabs.create({
             url: newMicrosoftURL
         });
     };
-    if (semantic.checked) {
+        if ((pubmed)&&(pubmed.checked)) {
+        var newPubmedURL = 'https://www.ncbi.nlm.nih.gov/pubmed/?term=' + searchstringplus;
+        chrome.tabs.create({
+            url: newPubmedURL
+        });
+    };
+    
+     if ((researchgate)&&(researchgate.checked)) {
+        var newResearchgateURL = 'https://www.researchgate.net/search.Search.html?type=publication&query=' + searchstringplus;
+        chrome.tabs.create({
+            url: newResearchgateURL
+        });
+    };
+    
+    if ((semantic)&&(semantic.checked)) {
         var newSemanticURL = 'https://www.semanticscholar.org/search?q=' + searchstringspace;
         chrome.tabs.create({
             url: newSemanticURL
         });
     };
-    if (archiveorg.checked) {
-        var newArchiveURL = 'https://archive.org/details/texts?and%5B%5D=' + searchstringplus;
+    if ((scinapse)&&(scinapse.checked)) {
+        var newScinapseURL = 'https://scinapse.io/search?page=1&sort=RELEVANCE&query=' + searchstringspace;
         chrome.tabs.create({
-            url: newArchiveURL
+            url: newScinapseURL
         });
     };
 }
