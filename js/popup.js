@@ -8,19 +8,20 @@
 const aulib = document.querySelector("#aulib");
 const arxiv = document.querySelector("#arxiv");
 const base = document.querySelector("#base");
+const bioone = document.querySelector("#bioone");
 const citeseer = document.querySelector("#citeseer");
 const core = document.querySelector("#core");
-const bioone = document.querySelector("#bioone");
 const eric = document.querySelector("#eric");
+const scholar = document.querySelector("#scholar");
 const scholarx = document.querySelector("#scholarx");
+const archiveorg = document.querySelector("#archiveorg");
+const microsoft = document.querySelector("#microsoft");
 const pubmed = document.querySelector("#pubmed");
 const researchgate = document.querySelector("#researchgate");
-const scinapse = document.querySelector("#scinapse");
-const au = document.querySelector("#aulib");
-const scholar = document.querySelector("#scholar");
-const microsoft = document.querySelector("#microsoft");
 const semantic = document.querySelector("#semantic");
-const archiveorg = document.querySelector("#archiveorg");
+const scinapse = document.querySelector("#scinapse");
+
+
 
 const searchbtn = document.querySelector("#searchtime");
 
@@ -30,7 +31,7 @@ const searchbtn = document.querySelector("#searchtime");
 
 document.body.onload = function () {
     chrome.storage.sync.get("engines", function (result) {
-       if(result.engines < 0) {
+       if(result.engines) {
              eng1 = result.engines;
             
         } else {
