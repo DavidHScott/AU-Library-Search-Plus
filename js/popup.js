@@ -5,20 +5,6 @@
 // Extension: AU Library Search Plus 
 // Date: 2020-04-23
 /****************************************************/
-document.body.onload = function () {
-    chrome.storage.sync.get("engines", function (result) {
-        eng1 = result.engines;
-        //console.log(eng1);
-            eng1.forEach(function (cls, index) {
-                var clss = "."+cls;
-                console.log(clss);
-                document.querySelector(clss).style.display='block';
-            });
-    });
-};
-
-
-
 const aulib = document.querySelector("#aulib");
 const arxiv = document.querySelector("#arxiv");
 const base = document.querySelector("#base");
@@ -37,6 +23,27 @@ const semantic = document.querySelector("#semantic");
 const archiveorg = document.querySelector("#archiveorg");
 
 const searchbtn = document.querySelector("#searchtime");
+
+
+
+//show only selected search engines in the popup
+
+document.body.onload = function () {
+    chrome.storage.sync.get("engines", function (result) {
+       if(result.engines < 0) {
+             eng1 = result.engines;
+            
+        } else {
+       eng1 = ["aulib","scholar","microsoft","semantic"];
+            }
+        //console.log(eng1);
+            eng1.forEach(function (cls, index) {
+                var clss = "."+cls;
+                console.log(clss);
+                document.querySelector(clss).style.display='block';
+            });
+    });
+};
 
 
 function performSearch(e) {
